@@ -1,0 +1,34 @@
+#shapeCanvas {
+  background-color: grey;
+  position: relative; 
+  height: 600px;
+  width: 600px;
+   
+}
+
+.square {
+   position: absolute;
+    background-color: whitesmoke;
+    border: 2px solid purple;
+  }
+
+.rect {
+   position: absolute;
+    border: 3px solid greenyellow;
+    background-color: whitesmoke;
+}
+
+.circ {
+   position: absolute;
+    background: white;
+    border: 3px solid green;
+    border-radius: 50%
+  }
+
+  .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid white;
+    border-right: 100px solid transparent;
+  }
