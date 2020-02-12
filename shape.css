@@ -1,4 +1,4 @@
-#shapeCanvas {
+#shape-canvas {
   background-color: grey;
   position: relative; 
   height: 600px;
@@ -32,3 +32,25 @@
     border-bottom: 100px solid white;
     border-right: 100px solid transparent;
   }
+
+
+  
+
+
+ 
+
+
+
+body {
+    background-color: whitesmoke;
+}
+
+#stats {
+    background-color: darkgray;
+    padding-top:15px;
+    padding-bottom: 15px;
+}
+
+#shape-name{
+    text-transform: capitalize;
+}

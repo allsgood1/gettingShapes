@@ -1,8 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let gray = document.getElementById("shapeCanvas");
+    let gray = document.getElementById("shape-canvas");
 
     const MAX = 600;
+
+    let shapeName = document.getElementById('shape-name');
+    let shapeWidth = document.getElementById('width-info');
+    let shapeHeight = document.getElementById('height-info');
+    let shapeRadius = document.getElementById('radius-info');
+    let shapeArea = document.getElementById('area-info'); 
+    let shapePerimeter = document.getElementById('perimeter-info');
+
 
     //--------------buttons--------------------------//
 
@@ -22,38 +30,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function insertSquare() {
-        var submitValue = document.getElementById("square-input").value;
-        let xVal = randomVal(0, MAX-submitValue);  //calls on randomVal function. picks a number from 0-800 because MAX is set to 800 px
-        let yVal = randomVal(0, MAX-submitValue);
-        let size = submitValue;
+        var size = document.getElementById("square-input").value;
+        let xVal = randomVal(0, MAX - size);  
+        let yVal = randomVal(0, MAX - size);
         let sq = new square(xVal, yVal, size);
     }
 
     function insertCircle() {
-        var submitValue = document.getElementById("circle-input").value;
-        let xVal = randomVal(0, MAX-(submitValue*2));
-        let yVal = randomVal(0, MAX-(submitValue*2));
-        let size = submitValue;
-        let cir = new circle(xVal, yVal, size);
+        var radius = document.getElementById("circle-input").value;
+        let xVal = randomVal(0, MAX - (radius * 2));
+        let yVal = randomVal(0, MAX - (radius * 2));
+        let cir = new circle(xVal, yVal, radius);
     }
 
     function insertRectangle() {
-        var heightValue = document.getElementById("rectangle-height-input").value;
-        var widthValue = document.getElementById("rectangle-width-input").value;
-        let xVal = randomVal(0, MAX-submitValue);
-        let yVal = randomVal(0, MAX-submitValue);
-        let recHeight = heightValue;
-        let recWidth = widthValue;
+        var recHeight = document.getElementById("rectangle-height-input").value;
+        var recWidth = document.getElementById("rectangle-width-input").value;
+        let xVal = randomVal(0, MAX - recWidth);
+        let yVal = randomVal(0, MAX - recHeight);
         let rec = new rectangle(xVal, yVal, recHeight, recWidth);
     }
 
-  function insertTriangle () {
-    var submitValue = document.getElementById("triangle-input").value;
-    let xVal = randomVal(0,MAX-submitValue);  //calls on randomVal function. picks a number from 0-800 because MAX is set to 800 px
-    let yVal = randomVal(0,MAX-submitValue);
-    let size = submitValue;
-    let tri = new Triangle(xVal, yVal, size);
-}
+    function insertTriangle() {
+        var size = document.getElementById("triangle-input").value;
+        let xVal = randomVal(0, MAX - size);  
+        let yVal = randomVal(0, MAX - size);
+        let tri = new Triangle(xVal, yVal, size);
+    }
 
 
     function randomVal(min, max) {
@@ -67,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             this.div = document.createElement("div");
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
+            gray.appendChild(this.div);
         }
     }
 
@@ -76,7 +80,18 @@ document.addEventListener("DOMContentLoaded", function () {
             this.div.classList.add('square')
             this.div.style.width = `${size}px`;
             this.div.style.height = `${size}px`;
-            gray.appendChild(this.div);
+
+            this.div.addEventListener('click', () => {
+                shapeName.value = this.div.classList;
+                shapeWidth.value = size;
+                shapeHeight.value = size;
+                shapeRadius.value = "N/A";
+                shapeArea.value = size ** 2
+                shapePerimeter.value = 4 * size;
+            })
+            this.div.addEventListener('dblclick', () => {
+                this.div.remove();
+            })
         }
     }
 
@@ -86,7 +101,19 @@ document.addEventListener("DOMContentLoaded", function () {
             this.div.classList.add('rect');
             this.div.style.height = `${recHeight}px`;
             this.div.style.width = `${recWidth}px`;
-            gray.appendChild(this.div);
+
+            this.div.addEventListener('click', () => {
+                shapeName.value = this.div.classList;
+                shapeWidth.value = recWidth;
+                shapeHeight.value = recHeight;
+                shapeRadius.value = "Not Applicable";
+                shapeArea.value = recWidth * recHeight;
+                shapePerimeter.value = 2 * (+recWidth + + recHeight);
+            })
+
+            this.div.addEventListener('dblclick', () => {
+                this.div.remove();
+            })
         }
     }
 
@@ -96,19 +123,42 @@ document.addEventListener("DOMContentLoaded", function () {
             this.div.classList.add('circ');
             this.div.style.width = `${radius}px`;
             this.div.style.height = `${radius}px`;
-            gray.appendChild(this.div);
+           
+            this.div.addEventListener ('click', () => {
+                shapeName.value=this.div.classList;
+                shapeWidth.value=radius*2;
+                shapeHeight.value=radius*2;
+                shapeRadius.value=radius;
+                shapeArea.value=(Math.PI)*((radius)**2);
+                shapePerimeter.value=(2)*(radius)*(Math.PI);
+
+                this.div.addEventListener ('dblclick', () => {
+                    this.div.remove();
+                })
+            })
         }
     }
 
- class Triangle extends shape {
-    constructor (x, y, size){
-        super(x,y);
-        this.div.classList.add('triangle');         
-        this.div.style.borderBottom = `${size}px solid white`;        
-        this.div.style.borderRight = `${size}px solid transparent`;        
-        gray.appendChild(this.div);
+    class Triangle extends shape {
+        constructor(x, y, size) {
+            super(x, y);
+            this.div.classList.add('triangle');
+            this.div.style.borderBottom = `${size}px solid white`;
+            this.div.style.borderRight = `${size}px solid transparent`;
+           
+            this.div.addEventListener ('click', () => {
+                shapeName.value=this.div.classList;
+                shapeWidth.value=size;
+                shapeHeight.value=size;
+                shapeRadius.value="N/A";
+                shapeArea.value=(size*size)/2;
+                shapePerimeter.value= +size + +size + Math. sqrt(size**2 + size**2);
+            })
+            this.div.addEventListener ('dblclick', () => {
+            this.div.remove();
+            })
 
+        }
     }
-}
 
 })

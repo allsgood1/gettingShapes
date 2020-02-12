@@ -4,7 +4,9 @@
 <head>
 
 
-    <title>Document</title>
+    <title>shapeUp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="shape.css">
 </head>
 
@@ -28,23 +30,85 @@
     <input type="text" placeholder="Height and Width" id="triangle-input"></input>
     <input type="submit" id="tri-button" value="Draw Triangle">
 
-   
-
-    <div id="shapeCanvas">
-    </div>
 
 
-    <div id="sideBar">
-        <div id="shape">shape</div>
-        <div id="width"></div>
-        <div id="height"></div>
-        <div id="radius"></div>
-        <div id="area"></div>
-        <div id="perimeter"></div>
+    <div class="container" style="margin: 0px; padding: 0px;">
+        <div class="row">
 
-    </div>
+            <div class="col">
+                <div id="shape-canvas"> </div>
+            </div>
 
-    <script src="shape.js"></script>
+            <div class="col">
+
+
+                <div id="stats" class="container">
+
+
+                    <div class="row">
+                        <div class="col">
+                            Shape Name
+                        </div>
+                        <div class="col" id="shape">
+                            <input type="text" id="shape-name" placeholder="Shape Name">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Width
+                        </div>
+                        <div class="col" id="width">
+                            <input type="text" id="width-info" placeholder="Width">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Height
+                        </div>
+                        <div class="col" id="height">
+                            <input type="text" id="height-info" placeholder="Height">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Radius
+                        </div>
+                        <div class="col" id="radius">
+                            <input type="text" id="radius-info" placeholder="Radius">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Area
+                        </div>
+                        <div class="col" id="area">
+                            <input type="text" id="area-info" placeholder="Area">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Perimeter
+                        </div>
+                        <div class="col" id="perimeter">
+                            <input type="text" id="perimeter-info" placeholder="Perimeter">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <script src="shape.js"></script>
 </body>
 
 </html>
